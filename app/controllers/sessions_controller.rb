@@ -10,9 +10,10 @@ class SessionsController < ApplicationController
             # to store encrypted data. 
             # To sign a user in, we store their "user_id" in the session for later retrevial.
             session[:user_id] = user.id
-            redirect_to root_path, notice: "Logged-In"
+            flash[:primary] = "Logged in"
+            redirect_to root_path
         else
-            flash[:alert] = "Email or password is incorrect"
+            flash[:primary] = "Email or password is incorrect"
             render :new
         end
     end
@@ -21,6 +22,7 @@ class SessionsController < ApplicationController
 
     def destroy
         session[:user_id] = nil
-        redirect_to root_path, notice: "Logged out"
+        flash[:primary] = "Logged out"
+        redirect_to root_path
     end
 end

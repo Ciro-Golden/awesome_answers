@@ -42,11 +42,18 @@
         <% end %>
       </nav>
     </header>
-    <% flash.each do |type, message| %>
-      <div class="flash flash-<%= type %>">
+
+   
+
+    <main class="container-fluid">
+     <% flash.each do |type, message| %>
+      <div class="alert alert-<%= type %>">
         <%= message %>
       </div>
     <% end %>
+
     <%= yield %>
+    </main>
+
   </body>
 </html>
