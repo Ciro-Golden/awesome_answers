@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>AwesomeAnswersNov2018</title>
+    <title>Awesome Answers</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,6 +10,43 @@
   </head>
 
   <body>
+    <header>
+      <nav>
+        <%# <a href="/">Home</a> %>
+        <%#
+          For more information on the link_to helper method, go to:
+          https://api.rubyonrails.org/classes/ActionView/Helpers/UrlHelper.html#method-i-link_to
+        %>
+
+        <%= link_to("Home", root_path) %>
+        |
+        <%= link_to("Questions", questions_path) %>
+          <% if user_signed_in? %>
+        |
+        <%= link_to("New Question", new_question_path) %>
+        <% end %>
+        |
+        <%# <a href="/contact_us">Contact Us</a> %>
+        <%= link_to("Contact Us", contact_us_path) %>
+        |
+        <% if user_signed_in? %>
+          Hello <%= current_user.first_name %>,
+
+          <%= link_to "Logout", session_path, method: :delete, data: {confirm: "are you sure you want to log out"} %> 
+
+          <% else %>
+          
+        <%= link_to "Sign In", new_session_path %>
+        |
+        <%= link_to "Sign Up", new_user_path %>
+        <% end %>
+      </nav>
+    </header>
+    <% flash.each do |type, message| %>
+      <div class="flash flash-<%= type %>">
+        <%= message %>
+      </div>
+    <% end %>
     <%= yield %>
   </body>
 </html>

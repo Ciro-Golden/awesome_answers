@@ -29,5 +29,13 @@ module AwesomeAnswersNov2018
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    config.generators do |g|
+      # this means dont create helper files when using ' rails generator'
+      #--no-helper
+      g.helper = false
+      # dont create js or css files when using 'rails generator'
+      g.assets = false
+    end
   end
 end
